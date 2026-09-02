@@ -1,0 +1,70 @@
+<script lang="ts">
+
+    interface Props {
+        ws_connected: boolean,
+        toggleWebSocket: () => void,
+        toggleOptions: () => void,
+        clearAllLines: () => void,
+        scrollToLast: () => void,
+    }
+
+    let { toggleWebSocket, ws_connected, toggleOptions, clearAllLines, scrollToLast }: Props = $props();
+    let ws_conn_color = $derived(ws_connected? "text-green-500": "text-red-500");
+    let btn_shared_classes = "mr-3 hover:text-sky-700 active:text-sky-500 hover:cursor-pointer";
+
+</script>
+
+<div class="fixed top-0 right-0 bg-mist-800/90 border-l border-b border-mist-700/90 h-10 px-3 rounded-bl-lg flex items-center z-10">
+    <button
+        class="{btn_shared_classes} {ws_conn_color} font-semibold"
+        onclick={toggleWebSocket}
+        title="Toggle WebSocket"
+    >
+        WS
+    </button>
+
+    <button
+        class="{btn_shared_classes}"
+        onclick={scrollToLast}
+        title="Scroll to Last"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path fill="currentColor" d="M8.013 4.565C8.753 4.169 9.559 4 11.14 4h1.718c1.582 0 2.387.169 3.128.565q.945.504 1.448 1.448c.396.74.565 1.546.565 3.128v5.718c0 1.582-.169 2.387-.565 3.128a3.45 3.45 0 0 1-1.448 1.448c-.74.396-1.546.565-3.128.565H11.14c-1.582 0-2.387-.169-3.128-.565a3.45 3.45 0 0 1-1.448-1.448C6.169 17.247 6 16.441 6 14.86V9.14c0-1.582.169-2.387.565-3.128a3.45 3.45 0 0 1 1.448-1.448M12.859 2H11.14c-2.014 0-3.094.278-4.072.801A5.45 5.45 0 0 0 4.801 5.07C4.278 6.047 4 7.127 4 9.141v5.718c0 2.014.278 3.094.801 4.071A5.45 5.45 0 0 0 7.07 21.2c.978.522 2.058.801 4.072.801h1.718c2.014 0 3.094-.279 4.071-.801a5.45 5.45 0 0 0 2.269-2.27c.522-.977.801-2.057.801-4.071V9.14c0-2.014-.279-3.094-.801-4.072A5.45 5.45 0 0 0 16.931 2.8c-.978-.522-2.058-.8-4.071-.8M13 6h-2v5h2zm-5.242 7.758L12 18.001l4.242-4.243l-1.414-1.414L12 15.172l-2.829-2.828z" />
+        </svg>
+    </button>
+
+    <button
+        class="{btn_shared_classes}"
+        onclick={clearAllLines}
+        title="Clear all lines"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                <path stroke-linejoin="round" d="m15 18.5l5-5m0 5l-5-5" />
+                <path d="M21 6H3m18 4H3m8 4H3m8 4H3" opacity="0.5" />
+            </g>
+        </svg>
+    </button>
+
+    <a class="{btn_shared_classes}" title="Home" href="/">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path fill="currentColor" d="m12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81zM12 3L2 12h3v8h6v-6h2v6h6v-8h3" />
+        </svg>
+    </a>
+
+    <button 
+        class="{btn_shared_classes}"
+        onclick={toggleOptions}
+        title="Options"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5" viewBox="0 0 512 512">
+            <path fill="currentColor" d="M495.9 166.6c3.2 8.7.5 18.4-6.4 24.6l-43.3 39.4c1.1 8.3 1.7 16.8 1.7 25.4s-.6 17.1-1.7 25.4l43.3 39.4c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-55.7-17.7c-13.4 10.3-28.2 18.9-44 25.4l-12.5 57.1c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-12.5-57.1c-15.8-6.5-30.6-15.1-44-25.4l-55.6 17.8c-8.8 2.8-18.6.3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l43.3-39.4c-1.1-8.4-1.7-16.9-1.7-25.5s.6-17.1 1.7-25.4l-43.3-39.4c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l55.7 17.7c13.4-10.3 28.2-18.9 44-25.4l12.5-57.1c2-9.1 9-16.3 18.2-17.8C227.3 1.2 241.5 0 256 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l12.5 57.1c15.8 6.5 30.6 15.1 44 25.4l55.7-17.7c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM256 336a80 80 0 1 0 0-160a80 80 0 1 0 0 160" />
+        </svg>
+    </button>
+</div>
+
+<style>
+
+</style>
