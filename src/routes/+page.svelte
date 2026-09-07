@@ -1,13 +1,14 @@
 <script lang="ts">
     import { browser } from "$app/environment";
-    import { page } from "$app/state";
-    import { getJikuErrorsContext } from "$lib/utils/context.svelte.js";
+    import { getConfirmationPopupContext, getJikuErrorsContext } from "$lib/utils/context.svelte.js";
     import { default_texthooker_options, setTextHookerOptionsContext, type TextHookerOptions } from "./context.js";
     import TopBar from "./TopBar.svelte";
     import OptionPanel from "./OptionPanel.svelte";
-	import { goto } from "$app/navigation";
 	import VirtualList from "$lib/components/VirtualList.svelte";
 	import { onMount, tick, untrack } from "svelte";
+
+
+    let confirmation_popup = getConfirmationPopupContext();
 
     interface Line {
         id: number,
@@ -32,8 +33,10 @@
 
     $effect(() => {
         if (preset_name) {
+            localStorage.setItem("selected_preset", preset_name);
+            const new_options = loadOptions(preset_name);
             untrack(() => {
-                options = loadOptions(preset_name);
+                Object.assign(options, new_options);
             });
             fetchLines(preset_name);
         }
@@ -51,6 +54,8 @@
 
         if (stored) {
             new_lines = JSON.parse(stored);
+        } else {
+            new_lines.length = 0;
         }
     }
 
@@ -75,13 +80,14 @@
                     }
                 });
 
-                return tmp;
+                return <TextHookerOptions> tmp;
             } else {
                 return default_texthooker_options;
             }
 
     }
 
+    // svelte-ignore state_referenced_locally
     let options: TextHookerOptions = $state(loadOptions(preset_name));
 
 
@@ -143,7 +149,9 @@
     }
 
     async function clearAllLines() {
-        vlist.clearItems();
+        confirmation_popup.text = "Delete all lines?";
+        confirmation_popup.onOk = vlist.clearItems;
+        confirmation_popup.show = true;
     }
 
     function addNewLine(new_line: string) {
