@@ -28,6 +28,7 @@
         buffer = 5,
         start_idx = $bindable(0),
         end_idx = $bindable(0),
+        // eslint-disable-next-line no-useless-assignment
         container = $bindable(),
         render_item,
         ...rest
@@ -106,12 +107,13 @@
 
     $effect(() => {
         // console.log("start", start);
-        const sync = { start };
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const sync = { start };
         let new_content_length = 0;
         for (let j = 0; j < visible_html_elements.length; j++) {
             if (!visible_html_elements[j]) { continue; }
 
-            const item_index = start + j;
+            // const item_index = start + j;
             const item_index_data = Number(visible_html_elements[j].dataset.originalIndex);
 
             if (length_map[item_index_data] === undefined) {
@@ -150,7 +152,7 @@
     // svelte-ignore state_referenced_locally
     let old_container_offlength = list_container_offlength;
 
-    async function refreshVisibles(items: any[], container_offlength?: number) {
+    async function refreshVisibles(items: T[], container_offlength?: number) {
         if (!container_offlength || !visible_html_elements) { return; }
 
         if (!items) {
@@ -393,7 +395,7 @@
     {...rest}
 >
     <div style="{vertical? "padding-right": "padding-top"}: {before_spacing}px; {vertical? "padding-left":"padding-bottom"}: {after_spacing}px;">
-        {#each visible_items as data, index}
+        {#each visible_items as data, index (data.original_index)}
             <div bind:this={visible_html_elements[index]} data-original-index={data.original_index}>
                 {@render render_item(data.item, data.original_index)}
             </div>
