@@ -1,8 +1,8 @@
 <script lang="ts">
-	// import '@fontsource/dotgothic16';
-	// import '@fontsource/klee-one';
-	// import '@fontsource/noto-sans-jp';
-	// import '@fontsource/zen-old-mincho';
+	import '@fontsource/dotgothic16';
+	import '@fontsource/klee-one';
+	import '@fontsource/noto-sans-jp';
+	import '@fontsource/zen-old-mincho';
 
 	import './layout.css';
 	import { browser } from '$app/environment';
@@ -70,7 +70,7 @@
 		confirmation_popup.onCancel = () => {};
     }
 
-	function modalOkWrapper(modalFunc: () => any) {
+	function modalOkWrapper(modalFunc: () => void) {
 		return () => {
 			let res = modalFunc();
 			Promise.resolve(res).then(
