@@ -1,26 +1,29 @@
-# sv
+# jiku-texthooker-page
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+ Web interface to receive text via websocket. This is a stripped down standalone version from the one included in [Jiku](https://github.com/TnTora/Jiku).
 
-## Creating a project
+ Main features:
 
-If you're seeing this, you've probably already done this step. Congrats!
+ - Horizontal and vertical text supported
+ - Support for multiple presets each storing lines and options separately 
+ - virtual list render only a fraction of the lines at a time, allowing great performance even with thousends of lines stored
+ - line counter and current top line indicator
+ - automatic scrolling on new line if near list bottom
+ - set maxium number of successive line repetition
+ - customise font, font-size, line-height
 
-```sh
-# create a new project
-npx sv create my-app
-```
 
-To recreate this project with the same configuration:
+Possible future features:
 
-```sh
-# recreate this project
-npx sv@0.17.0 create --template minimal --types ts --add prettier eslint tailwindcss="plugins:none" --install npm jiku-texthooker
-```
+- clipboard monitoring
+- edit line text
+- add option to remove text between parentheses 
+- include the text parsing and anki integration from [Jiku](https://github.com/TnTora/Jiku) in a simplified form
+
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Install dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```sh
 npm run dev
@@ -31,7 +34,7 @@ npm run dev -- --open
 
 ## Building
 
-To create a production version of your app:
+To build into a single html file:
 
 ```sh
 npm run build
@@ -39,4 +42,8 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## Acknowledgement
+
+[Texthooker UI](https://github.com/Renji-XD/texthooker-ui)
+
