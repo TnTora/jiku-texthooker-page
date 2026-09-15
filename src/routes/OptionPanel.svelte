@@ -146,6 +146,45 @@
         left_fn={() => { options.line_height -= 0.25 }}
         right_fn={() => { options.line_height += 0.25 }}
     />
+
+    <label for="text-color">Text Color</label>
+
+    <div class="flex justify-center gap-1">
+        <input id="text-color-text" type="text" bind:value={options.text_col} class="w-25">
+        <input id="text-color" type="color" bind:value={options.text_col} class="h-6 w-6">
+        <button
+            title="reset text color"
+            class="flex items-center justify-center aspect-square h-6 border border-neutral-600 bg-neutral-700 active:bg-neutral-600 rounded-xs cursor-pointer"
+            onclick={() => {
+                options.text_col = default_texthooker_options.text_col;
+            }}
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
+                <path d="M0 0h32v32H0z" fill="none" />
+                <path fill="currentColor" d="M18 28A12 12 0 1 0 6 16v6.2l-3.6-3.6L1 20l6 6l6-6l-1.4-1.4L8 22.2V16a10 10 0 1 1 10 10Z" />
+            </svg>            
+        </button>
+    </div>
+    
+
+    <label for="bg-color">BG Color</label>
+
+    <div class="flex justify-center gap-1">
+        <input id="bg-color-text" type="text" bind:value={options.bg_col} class="w-25">
+        <input id="bg-color" type="color" bind:value={options.bg_col} class="h-6 w-6">
+        <button
+            title="reset bg color"
+            class="flex items-center justify-center aspect-square h-6 border border-neutral-600 bg-neutral-700 active:bg-neutral-600 rounded-xs cursor-pointer"
+            onclick={() => {
+                options.bg_col = default_texthooker_options.bg_col;
+            }}
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
+                <path d="M0 0h32v32H0z" fill="none" />
+                <path fill="currentColor" d="M18 28A12 12 0 1 0 6 16v6.2l-3.6-3.6L1 20l6 6l6-6l-1.4-1.4L8 22.2V16a10 10 0 1 1 10 10Z" />
+            </svg>            
+        </button>
+    </div>
     
 </div>
 

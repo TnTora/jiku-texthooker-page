@@ -305,7 +305,7 @@
         {buffer}
         id="texthooker-container"
         class="relative pt-10 pb-6 w-full grow overflow-auto {options.vertical? "vert-rl pl-5 pr-2": ""}"
-        style="line-height: {options.line_height};{options.font? `font-family: ${options.font};`: ""}"
+        style="background-color:{options.bg_col}; color: {options.text_col} ;line-height: {options.line_height};{options.font? `font-family: ${options.font};`: ""}"
     >
         {#snippet render_item(line, _index)}
             <div class="relative flex items-center">
