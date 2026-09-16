@@ -2,6 +2,14 @@
 
  Web interface to receive text via websocket. This is a stripped down standalone version from the one included in [Jiku](https://github.com/TnTora/Jiku).
 
+ <img height="491" alt="main_example" src="https://github.com/user-attachments/assets/5c18d6ee-90d6-46c7-b126-0b90411a5608" />
+ <img height="491" alt="options_example" src="https://github.com/user-attachments/assets/2972d7b1-031a-48ae-bf4a-95b235ed06f9" />
+
+
+You can download the html page from the [Release page](https://github.com/TnTora/jiku-texthooker-page/releases)
+
+
+
  Main features:
 
  - Horizontal and vertical text supported
